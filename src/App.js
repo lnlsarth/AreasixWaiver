@@ -59,7 +59,7 @@ function App() {
 
               By participating in the Event, I agree to release Area Six Council, its organizers, officers and volunteers from any liability for serious injuries, damages, or losses that may occur during the Event, whether caused by negligence or otherwise.<br/><br/>
 
-              I also understand that the Area Six Council is responsible to perform first-Aid as needed and is willing to give financial support [Amount as agreed by the Area Six Officers] but not liable to pay for the full medical expenses incurred as a result of any Injury sustained during the Event.<br/><br/>
+              I also understand that the Area Six Council is responsible to perform first-Aid as needed and is willing to give financial support but not liable to pay for the full medical expenses incurred as a result of any Injury sustained during the Event.<br/><br/>
 
               Participant's Name: {participantName}<br/><br/>
             Date: {formatDateToYYYYMMDD()}<br/><br/>
@@ -79,7 +79,7 @@ function App() {
               canvasWidth={windowWidth >= phoneWidth ? 500 : 300}
               className='participantSignature'
             /><br/>
-            Parent/Guardian Name: <input type='text' placeholder='Juan Dela Cruz' style={{
+            Parent/Guardian Name (if participant is under 18 years old): <input type='text' placeholder='Juan Dela Cruz' style={{
               textAlign: 'center',
               height: 30,
               width: 130
@@ -88,7 +88,7 @@ function App() {
               setGuardianName(e.target.value)
             }}/><br/><br/>
             Date:{formatDateToYYYYMMDD()}<br/><br/>
-            Parent/Guardian Signature (if participant is under 18 years old):<br/>
+            Parent/Guardian Signature:<br/>
             <CanvasDraw
               ref={canvas2}
               style={{
