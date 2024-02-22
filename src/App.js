@@ -102,7 +102,7 @@ function App() {
                   margin: '0'
                 }}>Optional</h2>
               </div>
-              Parent/Guardian Name (if participant is under 18 years old): <input type='text' placeholder='Juan Dela Cruz' style={{
+              Parent/Guardian Name (if participant is under 18 years old): <input type='text' placeholder='Full name' style={{
                 textAlign: 'center',
                 height: 30,
                 width: 130
