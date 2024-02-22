@@ -45,8 +45,10 @@ function App() {
           <h2 style={{
             textAlign: 'center'
           }}>Waiver Form</h2>
-          <p>I, <input type='text' placeholder='Juan Dela Cruz' style={{
+          <p>I, <input type='text' placeholder='Full Name' style={{
             textAlign: 'center',
+            height: 30,
+            width: 150
           }}
           onChange={(e) => {
             setParticipantName(e.target.value);
@@ -60,10 +62,7 @@ function App() {
               I also understand that the Area Six Council is responsible to perform first-Aid as needed and is willing to give financial support [Amount as agreed by the Area Six Officers] but not liable to pay for the full medical expenses incurred as a result of any Injury sustained during the Event.<br/><br/>
 
               Participant's Name: {participantName}<br/><br/>
-            Date: <input type='date' style={{
-                        textAlign: 'center'
-                      }}
-                      onChange={(e) => setParticipantDate(e.target.value)}/> <br/><br/>
+            Date: {formatDateToYYYYMMDD()}<br/><br/>
             Participant Signature:
             <CanvasDraw
               ref={canvas1}
@@ -81,17 +80,14 @@ function App() {
               className='participantSignature'
             /><br/>
             Parent/Guardian Name: <input type='text' placeholder='Juan Dela Cruz' style={{
-              textAlign: 'center'
+              textAlign: 'center',
+              height: 30,
+              width: 130
             }}
             onChange={(e) => {
               setGuardianName(e.target.value)
             }}/><br/><br/>
-            Date: <input type='date' style={{
-                        textAlign: 'center'
-                      }}
-                      onChange={(e) => {
-                        setGuardianDate(e.target.value)
-                      }}/> <br/><br/>
+            Date:{formatDateToYYYYMMDD()}<br/><br/>
             Parent/Guardian Signature (if participant is under 18 years old):<br/>
             <CanvasDraw
               ref={canvas2}
@@ -117,13 +113,17 @@ function App() {
         gap: '5%'
       }}>
         <button style={{
-          margin: "5%"
+          margin: "5%",
+          height: 40,
+          width: 120
         }} onClick={() => {
           canvas1.current.clear();
           canvas2.current.clear();
         }}>Clear Signatures</button>
         <button id='saving' style={{
-          margin: "5%"
+          margin: "5%",
+          height: 40,
+          width: 120
         }} onClick={() => {
 
           if (participantName === ""){
@@ -133,12 +133,22 @@ function App() {
             document.getElementById("root").style.cursor = 'wait';
             const canvas1Url = canvas1.current.getDataURL();
             const canvas2Url = canvas2.current.getDataURL();
-            saveForm(participantName, participantDate, canvas1Url, guardianName, guradianDate, canvas2Url);
+            saveForm(participantName, formatDateToYYYYMMDD(), canvas1Url, guardianName, formatDateToYYYYMMDD(), canvas2Url);
           }
         }}>Submit Form</button>
       </div>
     </div>
   );
+}
+
+function formatDateToYYYYMMDD() {
+  const currentDate = new Date();
+
+  const year = currentDate.getFullYear();
+  const month = String(currentDate.getMonth() + 1).padStart(2, '0'); // Month is zero-based
+  const day = String(currentDate.getDate()).padStart(2, '0');
+
+  return `${year}/${month}/${day}`;
 }
 
 export default App;
