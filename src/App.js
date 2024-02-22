@@ -73,36 +73,69 @@ function App() {
               lazyRadius={0}
               brushRadius={1.5}
               hideGridX={true}
+              hideInterface={true}
               gridLineWidth={3}
               immediateLoading={false}
               canvasHeight={200}
               canvasWidth={windowWidth >= phoneWidth ? 500 : 300}
               className='participantSignature'
             /><br/>
-            Parent/Guardian Name (if participant is under 18 years old): <input type='text' placeholder='Juan Dela Cruz' style={{
-              textAlign: 'center',
-              height: 30,
-              width: 130
+            <button style={{
+              marginTop: "1%",
+              height: 40,
+              width: 120
             }}
-            onChange={(e) => {
-              setGuardianName(e.target.value)
-            }}/><br/><br/>
-            Date:{formatDateToYYYYMMDD()}<br/><br/>
-            Parent/Guardian Signature:<br/>
-            <CanvasDraw
-              ref={canvas2}
-              style={{
-                boxShadow:
-                  "0 13px 27px -5px rgba(50, 50, 93, 0.25),    0 8px 16px -8px rgba(0, 0, 0, 0.3)"
+            onClick={() => {
+              canvas1.current.clear();
+            }}>Clear Signature</button><br/><br/>
+
+            <div className="optional" style={{
+              border: '1px dashed black',
+              padding: '3%'
+            }}>
+              <div className="optionalhead" style={{
+                textAlign: 'center',
+                padding: 'none',
+                margin: 'none'
+              }}>
+                <h2 style={{
+                  margin: '0'
+                }}>Optional</h2>
+              </div>
+              Parent/Guardian Name (if participant is under 18 years old): <input type='text' placeholder='Juan Dela Cruz' style={{
+                textAlign: 'center',
+                height: 30,
+                width: 130
               }}
-              lazyRadius={0}
-              brushRadius={1.5}
-              hideGridX={true}
-              gridLineWidth={3}
-              immediateLoading={false}
-              canvasHeight={200}
-              canvasWidth={windowWidth >= phoneWidth ? 500 : 300}
-            />
+              onChange={(e) => {
+                setGuardianName(e.target.value)
+              }}/><br/><br/>
+              Date:{formatDateToYYYYMMDD()}<br/><br/>
+              Parent/Guardian Signature:<br/>
+              <CanvasDraw
+                ref={canvas2}
+                style={{
+                  boxShadow:
+                    "0 13px 27px -5px rgba(50, 50, 93, 0.25),    0 8px 16px -8px rgba(0, 0, 0, 0.3)"
+                }}
+                lazyRadius={0}
+                brushRadius={1.5}
+                hideGridX={true}
+                hideInterface={true}
+                gridLineWidth={3}
+                immediateLoading={false}
+                canvasHeight={200}
+                canvasWidth={windowWidth >= phoneWidth ? 500 : 300}
+              />
+              <button style={{
+                marginTop: "1%",
+                height: 40,
+                width: 120
+              }}
+              onClick={() => {
+                canvas2.current.clear();
+              }}>Clear Signature</button>
+            </div>
           </p>
       </div>
       <div style={{
@@ -112,14 +145,6 @@ function App() {
         justifyContent: 'center',
         gap: '5%'
       }}>
-        <button style={{
-          margin: "5%",
-          height: 40,
-          width: 120
-        }} onClick={() => {
-          canvas1.current.clear();
-          canvas2.current.clear();
-        }}>Clear Signatures</button>
         <button id='saving' style={{
           margin: "5%",
           height: 40,
