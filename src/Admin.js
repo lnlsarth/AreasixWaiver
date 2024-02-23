@@ -67,7 +67,7 @@ function Admin(){
                                             I, {data.participantName}, understand and acknowledge the risks involved in participating the Area Six Sportsfest organized by Area Six Council. These risks may include minor accidents or serious injuries.{"\n"}{"\n"}
                                             By participating in the Event, I agree to release Area Six Council, its organizers, officers and volunteers from any liability for serious injuries, damages, or losses that may occur during the Event, whether caused by negligence or otherwise.{"\n"}{"\n"}
                                             I also understand that the Area Six Council is responsible to perform first-Aid as needed and is willing to give financial support but not liable to pay for the full medical expenses incurred as a result of any Injury sustained during the Event.{"\n"}{"\n"}
-                                            Participant's Name: {data.ParticipantName}{"\n"}
+                                            Participant's Name: {data.participantName}{"\n"}
                                             Date: {data.participantDate}{"\n"}
                                             Participant Signature:{"\n"}
                                         </Text>
