@@ -1,15 +1,16 @@
-import { setDoc, collection, doc } from "firebase/firestore";
-import { getStorage, ref, uploadString } from "firebase/storage";
+import { setDoc, doc, getDocs, collection } from "firebase/firestore";
+import { getBytes, getDownloadURL, getStorage, getStream, ref, uploadString } from "firebase/storage";
 import { db } from "./Firebase";
+import Form from "./FormModel";
 
-        const collectionRef = collection(db, "Forms");
-        const storage = getStorage();
-        const saveForm = async (participantName,
-            participantDate,
-            participantSignature,
-            guardianName,
-            guradianDate,
-            guardianSignature) => {
+    const FormController = {
+        saveForm: async (participantName,
+        participantDate,
+        participantSignature,
+        guardianName,
+        guradianDate,
+        guardianSignature) => {
+            const storage = getStorage();
             const storageRef = ref(storage, '/' + participantName + '/participant')
             const storageRef2 = ref(storage, '/' + participantName + '/guardian' ) 
 
@@ -31,7 +32,29 @@ import { db } from "./Firebase";
             }).catch((error) => {
                 console.log("Error: " + error);
             })
+        },
+        retreiveParticipantSignatures: async (fullName) => {
+            const storage = getStorage();
+            const signatures = await getDownloadURL(ref(storage, "/" + fullName + "/participant"))
+            
+            
+            return signatures;
+        },
+        retreiveGuardianSignatures: async (fullName) => {
+            const storage = getStorage();
+            const signatures = await getDownloadURL(ref(storage, "/" + fullName + "/guardian"))
+            
+            
+            return signatures;
+        },
+        retreiveUsers: async () => {
+            const users = []
+            const data = (await getDocs(collection(db, "Forms"))).forEach((data)=>{
+                users.push(data.data())
+            })
+            return Object.values(users);
         }
+    }
 
 
-export default saveForm;
+export default FormController;
